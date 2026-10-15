@@ -1,0 +1,128 @@
+:root {
+  --bg: #0f1115;
+  --panel: #171a21;
+  --panel-2: #1e222b;
+  --line: #2a2f3a;
+  --text: #e8eaee;
+  --muted: #8b92a1;
+  --accent: #ff5a1f;
+  --gym: #ff5a1f;
+  --bjj: #3fa7ff;
+  --rest: #6b7280;
+  --good: #3ecf8e;
+  --radius: 12px;
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #f4f2ee; --panel: #ffffff; --panel-2: #f7f5f1; --line: #e2ded6;
+    --text: #16181d; --muted: #6a6f7a;
+  }
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--bg); color: var(--text); }
+body {
+  font: 15px/1.45 Inter, system-ui, sans-serif;
+  max-width: 760px; margin: 0 auto; padding: 0 16px 40px;
+  padding-bottom: max(40px, env(safe-area-inset-bottom));
+}
+button, input, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+
+.top {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 0 14px; gap: 12px; flex-wrap: wrap;
+}
+.brand { font-family: "Barlow Condensed", sans-serif; font-size: 30px; letter-spacing: .04em; line-height: 1; }
+.brand-mark { font-weight: 700; }
+.brand-sub { font-weight: 600; color: var(--accent); margin-left: 6px; }
+.week-nav { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 14px; }
+.week-nav button {
+  width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--line);
+  background: var(--panel); font-size: 18px; line-height: 1;
+}
+#weekLabel { min-width: 150px; text-align: center; }
+
+.days {
+  display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px;
+  position: sticky; top: 0; background: var(--bg); padding: 8px 0 12px; z-index: 5;
+}
+.day-btn {
+  border: 1px solid var(--line); background: var(--panel); border-radius: 10px;
+  padding: 8px 2px 7px; display: flex; flex-direction: column; align-items: center; gap: 2px;
+  position: relative; overflow: hidden;
+}
+.day-btn .dn { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 17px; letter-spacing: .03em; }
+.day-btn .dt { font-size: 10.5px; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+.day-btn::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: var(--c, var(--rest)); }
+.day-btn.active { background: var(--panel-2); border-color: var(--c, var(--line)); }
+.day-btn.today .dn::after { content: "•"; color: var(--accent); margin-left: 2px; }
+.day-btn.done .dt { color: var(--good); }
+
+.day-title { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin: 6px 0 14px; }
+.day-title h2 { font-family: "Barlow Condensed", sans-serif; font-size: 34px; margin: 0; line-height: 1; letter-spacing: .02em; }
+.day-title .tag { font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--c); font-weight: 600; }
+.done-toggle {
+  border: 1px solid var(--line); background: var(--panel); border-radius: 999px;
+  padding: 6px 14px; font-size: 13px; white-space: nowrap;
+}
+.done-toggle.on { background: var(--good); border-color: var(--good); color: #08140e; font-weight: 600; }
+
+.ex, .card {
+  background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 14px; margin-bottom: 10px;
+}
+.ex-head { display: flex; align-items: baseline; gap: 10px; }
+.ex-name { margin: 0; font-size: 16px; font-weight: 600; flex: 1; }
+.ex-target { color: var(--muted); font-size: 13px; }
+.ex-remove { border: 0; background: none; color: var(--muted); font-size: 20px; padding: 0 2px; line-height: 1; }
+.ex-remove:hover { color: var(--accent); }
+.sets { display: grid; grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); gap: 8px; margin: 12px 0 8px; }
+.set {
+  display: flex; align-items: center; gap: 4px; background: var(--panel-2);
+  border: 1px solid var(--line); border-radius: 9px; padding: 6px 8px;
+}
+.set .n { font-size: 11px; color: var(--muted); width: 14px; }
+.set input {
+  width: 100%; min-width: 0; border: 0; background: transparent; font-size: 16px;
+  font-variant-numeric: tabular-nums; font-weight: 600; outline: none;
+}
+.set .u { font-size: 11px; color: var(--muted); }
+.set input::placeholder { color: var(--muted); opacity: .55; font-weight: 400; }
+.ex-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.ex-prev { font-size: 12.5px; color: var(--muted); }
+.ex-prev b { color: var(--text); font-weight: 600; }
+.up { color: var(--good); }
+
+.ghost {
+  border: 1px solid var(--line); background: transparent; border-radius: 8px;
+  padding: 7px 12px; font-size: 13px; color: var(--muted);
+}
+.ghost:hover { color: var(--text); border-color: var(--muted); }
+.ghost.small { padding: 4px 10px; font-size: 12px; }
+
+.add-ex { display: grid; grid-template-columns: 1fr 70px 70px auto; gap: 8px; }
+.add-ex input, textarea {
+  background: var(--panel-2); border: 1px solid var(--line); border-radius: 9px;
+  padding: 9px 10px; width: 100%; min-width: 0; outline: none;
+}
+.add-ex input:focus, textarea:focus { border-color: var(--accent); }
+.add-ex button { background: var(--accent); color: #fff; border: 0; border-radius: 9px; padding: 0 14px; font-weight: 600; }
+.card h4 { margin: 0 0 10px; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+textarea { resize: vertical; min-height: 90px; line-height: 1.5; }
+.bjj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px; }
+.bjj-grid label { font-size: 12px; color: var(--muted); display: flex; flex-direction: column; gap: 4px; }
+.bjj-grid input { background: var(--panel-2); border: 1px solid var(--line); border-radius: 9px; padding: 9px 10px; outline: none; }
+.rest-msg { color: var(--muted); margin: 0 0 4px; }
+
+.foot { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--line); }
+.foot .file { cursor: pointer; }
+.hint { font-size: 12px; color: var(--muted); margin-left: auto; }
+
+@media (max-width: 480px) {
+  .day-btn .dt { font-size: 9px; }
+  .day-title h2 { font-size: 28px; }
+  .add-ex { grid-template-columns: 1fr 1fr; }
+  .add-ex input:first-child { grid-column: 1 / -1; }
+  .add-ex button { grid-column: 1 / -1; padding: 10px; }
+  .hint { margin-left: 0; width: 100%; }
+}

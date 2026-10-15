@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Training Log</title>
+  <meta name="theme-color" content="#0f1115">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏋️</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <span class="brand-mark">TRAINING</span><span class="brand-sub">LOG</span>
+    </div>
+    <div class="week-nav">
+      <button id="prevWeek" aria-label="Previous week">‹</button>
+      <span id="weekLabel"></span>
+      <button id="nextWeek" aria-label="Next week">›</button>
+    </div>
+  </header>
+
+  <nav id="days" class="days" aria-label="Days of the week"></nav>
+
+  <main id="day" class="day"></main>
+
+  <footer class="foot">
+    <button id="exportBtn" class="ghost">Export backup</button>
+    <label class="ghost file">Import backup<input id="importFile" type="file" accept="application/json" hidden></label>
+    <span class="hint">Data is saved in this browser only.</span>
+  </footer>
+
+  <template id="exerciseTpl">
+    <article class="ex">
+      <div class="ex-head">
+        <h3 class="ex-name"></h3>
+        <span class="ex-target"></span>
+        <button class="ex-remove" aria-label="Remove exercise">×</button>
+      </div>
+      <div class="sets"></div>
+      <div class="ex-foot">
+        <span class="ex-prev"></span>
+        <button class="add-set ghost small">+ set</button>
+      </div>
+    </article>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>
